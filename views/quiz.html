@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz - Biologia</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz de Biologia</h1>
+        <div id="quiz-container"></div>
+        <p id="feedback-message" style="color: red; font-weight: bold;"></p>  <!--ESSA PORRA NAO TA FUNCIONANDO DIREITO-->
+        <button onclick="location.href='/'" class="button">Voltar</button>
+    </div>
+
+    <script>
+        const quizContainer = document.getElementById("quiz-container");
+        const feedbackMessage = document.getElementById("feedback-message");
+
+        const questions = [
+            { question: "Qual mutação leva à Anemia Falciforme?", options: ["Deleção de uma valina", "Substituição de um ácido glutâmico por uma valina", "Inserção de um ácido glutâmico"], answer: 1 },
+            { question: "A fenilcetonúria causa:", options: ["Acúmulo de tirosina", "Acúmulo de fenilalanina", "Acúmulo da enzima hidroxilase"], answer: 1 },
+            { question: "A Fibrose Cística é caracterizada por:", options: ["Excesso de fenilalanina", "Muco espesso nos pulmões", "Deficiência de hemoglobina"], answer: 1 }
+        ];
+
+        let currentQuestionIndex = 0;
+        let correctPositionIndex = 0;
+
+        function loadQuestion() {
+            quizContainer.innerHTML = "";
+            feedbackMessage.textContent = "";  // Limpa a mensagem de feedback
+
+            const currentQuestion = questions[currentQuestionIndex];
+            const { question, options, answer } = currentQuestion;
+
+            const questionElement = document.createElement("div");
+            questionElement.className = "question";
+            questionElement.textContent = question;
+            quizContainer.appendChild(questionElement);
+
+            correctPositionIndex = (correctPositionIndex + 1) % options.length;
+
+            const shuffledOptions = [...options];
+            [shuffledOptions[correctPositionIndex], shuffledOptions[answer]] = [shuffledOptions[answer], shuffledOptions[correctPositionIndex]];
+
+            shuffledOptions.forEach((option, index) => {
+                const optionElement = document.createElement("button");
+                optionElement.className = "quiz-option";
+                optionElement.textContent = option;
+
+                if (index === correctPositionIndex) {
+                    optionElement.dataset.correct = "true";
+                }
+
+                optionElement.onclick = () => {
+                    if (optionElement.dataset.correct === "true") {
+                        optionElement.classList.add("correct");
+                        setTimeout(nextQuestion, 1000);
+                    } else {
+                        optionElement.classList.add("incorrect");
+                        feedbackMessage.textContent = "Você errou";
+                        setTimeout(restartQuiz, 1000);  
+                    }
+                };
+
+                quizContainer.appendChild(optionElement);
+            });
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                feedbackMessage.textContent = "";  
+                quizContainer.innerHTML = "<h2>Parabéns, você completou o quiz!</h2>";
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            correctPositionIndex = 0;
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
