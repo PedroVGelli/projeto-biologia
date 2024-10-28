@@ -1,113 +1,118 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8f5;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
     color: #333;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
+
 .container {
-    width: 80%;
-    max-width: 600px;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 400px;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
+    animation: fadeIn 0.5s ease;
 }
-.button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
-.button:hover {
-    background-color: #45a049;
-}
+
 h1 {
     color: #4CAF50;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
-p {
-    line-height: 1.6;
-    text-align: left;
-}
-.question {
-    margin: 20px 0;
-    text-align: left;
-    font-weight: bold;
-}
-.quiz-option {
-    background-color: #e8f5e9;
-    border: 1px solid #4CAF50;
-    padding: 10px;
+
+.progress-bar {
+    height: 10px;
+    width: 100%;
+    background-color: #ddd;
     border-radius: 5px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #4CAF50;
+    transition: width 0.4s ease;
+}
+
+.button, .quiz-option {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
-    margin: 5px 0;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
+
+.button {
+    background-color: #050d96;
+    color: white;
+}
+
+.quiz-option {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
 .quiz-option:hover {
-    background-color: #c8e6c9;
+    background-color: #ccc;
 }
-/* Exemplo de estilo responsivo para dispositivos móveis */
-@media (max-width: 768px) {
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f8f5;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    
-    .container {
-        width: 90%;
-        max-width: 400px;
-        padding: 20px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        text-align: center;
-    }
-    
-    h1 {
-        color: #4CAF50;
-        margin-bottom: 20px;
-    }
-    
-    .button, .quiz-option {
-        width: 100%;
-        background-color: #4CAF50;
-        color: white;
-        padding: 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10px;
-        transition: background-color 0.3s;
-    }
-    
-    .button:hover, .quiz-option:hover {
-        background-color: #45a049;
-    }
-    
-    .quiz-option.incorrect {
-        background-color: #ff4d4d;
-    }
-    
-    .quiz-option.correct {
-        background-color: #4CAF50;
-    }
+
+.quiz-option.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.quiz-option.incorrect {
+    background-color: #ff4d4d;
+    color: white;
+}
+/* Estilos para a página Aprenda */
+.learn-button {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 1.2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.learn-button:hover {
+    background-color: #45a049;
+}
+
+.learn-content {
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.learn-content h2 {
+    color: #4CAF50;
+    font-size: 1.8rem;
+}
+
+.learn-content p {
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
