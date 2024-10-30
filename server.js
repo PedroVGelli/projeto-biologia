@@ -31,3 +31,6 @@ app.get('/fibrose-cistica', (req, res) => {
 app.listen(3000, () => {
     console.log('App rodando na porta 3000');
 });
+app.get('/down', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'down.html'));
+});
